@@ -32,4 +32,8 @@ public class AddPortWindow extends JPanel{
     public String getName(){
         return txt_name.getText();
     }
+
+    public void reset(){
+        txt_name.setText("");
+    }
 }

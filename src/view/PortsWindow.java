@@ -28,6 +28,7 @@ public class PortsWindow extends JPanel {
         pnl_buttons.add(btn_add);
 
         btn_del = new JButton("Удалить");
+        btn_del.setEnabled(false);
         pnl_buttons.add(btn_del);
 
         btn_enter = new JButton("Войти");
@@ -62,6 +63,10 @@ public class PortsWindow extends JPanel {
 
     public void makeEnterEnabled(boolean b){
         btn_enter.setEnabled(b);
+    }
+
+    public void makeDeleteEnabled(boolean b){
+        btn_del.setEnabled(b);
     }
 
     public void tableListener(ListSelectionListener l){

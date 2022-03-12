@@ -5,7 +5,7 @@ public abstract class Ship {
     public int maxSpeed;
     public int displacement;
 
-    abstract String getAbout();
+    public abstract String getAbout();
     abstract String getType();
 
     public String getName(){

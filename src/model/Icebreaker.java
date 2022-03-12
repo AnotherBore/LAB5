@@ -12,10 +12,10 @@ public class Icebreaker extends Ship{
 
     public String getAbout(){
         String answer = "";
-        answer += ("Название:" + name + '\n');
-        answer += ("Водоизмещение" + displacement + '\n');
-        answer += ("Максимальная скорость" + maxSpeed + '\n');
-        answer += ("Максимальная скорость на льду" + maxSpeedOnIce + '\n');
+        answer += ("Название: " + name + '\n');
+        answer += ("Водоизмещение: " + displacement + '\n');
+        answer += ("Максимальная скорость: " + maxSpeed + '\n');
+        answer += ("Максимальная скорость на льду: " + maxSpeedOnIce + '\n');
         return answer;
     }
 

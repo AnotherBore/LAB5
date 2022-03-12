@@ -1,6 +1,8 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
+
 import model.MyTableModel;
 
 import java.awt.*;
@@ -26,9 +28,11 @@ public class ShipsWindow extends JPanel {
         pnl_buttons.add(btn_add);
 
         btn_del = new JButton("Удалить");
+        btn_del.setEnabled(false);
         pnl_buttons.add(btn_del);
 
         btn_info = new JButton("Информация");
+        btn_info.setEnabled(false);
         pnl_buttons.add(btn_info);
 
         btn_back = new JButton("Назад");
@@ -56,7 +60,23 @@ public class ShipsWindow extends JPanel {
         btn_del.addActionListener(l);
     }
 
+    public void makeDeleteEnabled(boolean b){
+        btn_del.setEnabled(b);
+    }
+
+    public void makeInfoEnabled(boolean b){
+        btn_info.setEnabled(b);
+    }
+
     public void infoButton(ActionListener l){
         btn_info.addActionListener(l);
+    }
+
+    public void tableListener(ListSelectionListener l){
+        table.getSelectionModel().addListSelectionListener(l);
+    }
+
+    public int getSelectedRow(){
+        return table.getSelectedRow();
     }
 }

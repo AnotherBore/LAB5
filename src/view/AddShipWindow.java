@@ -77,4 +77,11 @@ public class AddShipWindow extends JPanel{
     public String getType(){
         return comboBox.getSelectedItem().toString();
     }
+
+    public void reset(){
+        name.setText("");
+        maxSpeed.setValue(1);
+        displacement.setValue(1);
+        difference.setValue(1);
+    }
 }

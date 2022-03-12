@@ -13,10 +13,10 @@ public class Steamboat extends Ship{
 
     public String getAbout(){
         String answer = "";
-        answer += ("Название:" + name + '\n');
-        answer += ("Водоизмещение" + displacement + '\n');
-        answer += ("Максимальная скорость" + maxSpeed + '\n');
-        answer += ("Суммарная мощность двигателей" + enginePower + '\n');
+        answer += ("Название: " + name + '\n');
+        answer += ("Водоизмещение: " + displacement + '\n');
+        answer += ("Максимальная скорость: " + maxSpeed + '\n');
+        answer += ("Суммарная мощность двигателей: " + enginePower + '\n');
         return answer;
     }
 

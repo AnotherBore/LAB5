@@ -36,15 +36,16 @@ public class Controller {
         portsTableModel.setHeaders(portHeaders);
         this.portsWindow.setTableModel(portsTableModel);
 
+        //ACTIONLISTENERS FOR ADDPORTWINDOW
+
         this.addPortWindow.addButton(e -> {
             String name = this.addPortWindow.getName();
             ports.add(new Seaport(name));
             portsTableModel.fireTableDataChanged();
-            // if(this.ports.size() > 0){
-            //     this.portsWindow.makeEnterEnabled(true);
-            // }
-            // else this.portsWindow.makeEnterEnabled(false);
+            this.addPortWindow.reset();
         });
+
+        //ACTIONLISTENERS FOR ADDSHIPWINDOW
 
         this.addShipWindow.chooseComboBox(e -> {
             int item = this.addShipWindow.getSelectedIndex();
@@ -59,17 +60,9 @@ public class Controller {
             }
         });
 
-        this.portsWindow.enterButton(e -> {
-            int row = this.portsWindow.getSelectedRow();
-            seaport = ports.get(row);
-            shipsTableModel = new MyTableModel(seaport);
-            shipsTableModel.setHeaders(shipHeaders);
-            this.shipsWindow.setTableModel(shipsTableModel);
-        });
-
         this.addShipWindow.addButton(e -> {
             if(this.addShipWindow.getName().isEmpty()){
-                JOptionPane.showMessageDialog(this.addShipWindow, "Введите имя");
+                JOptionPane.showMessageDialog(this.addShipWindow, "Введите название");
             }
             else{
                 String name = this.addShipWindow.getName();
@@ -87,17 +80,61 @@ public class Controller {
                     seaport.add(new Steamboat(name, speed, displacement, difference));
                 }
                 shipsTableModel.fireTableDataChanged();
+                this.addShipWindow.reset();
             }
+        });
+
+        //ACTIONLISTENERS FOR PORTSWINDOW
+
+        this.portsWindow.enterButton(e -> {
+            int row = this.portsWindow.getSelectedRow();
+            seaport = ports.get(row);
+            shipsTableModel = new MyTableModel(seaport);
+            shipsTableModel.setHeaders(shipHeaders);
+            this.shipsWindow.setTableModel(shipsTableModel);
         });
 
         this.portsWindow.tableListener(e -> {
             if(this.portsWindow.getSelectedRow() > -1){
                 this.portsWindow.makeEnterEnabled(true);
+                this.portsWindow.makeDeleteEnabled(true);
             }
-            else this.portsWindow.makeEnterEnabled(false);
-
+            else{
+                this.portsWindow.makeEnterEnabled(false);
+                this.portsWindow.makeDeleteEnabled(false);
+            }
         });
 
+        this.portsWindow.deleteButton(e -> {
+            int row = this.portsWindow.getSelectedRow();
+            ports.remove(row);
+            portsTableModel.fireTableDataChanged();
+        });
 
+        //ACTIONLISTENERS FOR SHIPSWINDOW
+
+        this.shipsWindow.tableListener(e -> {
+            if(this.shipsWindow.getSelectedRow() > -1){
+                this.shipsWindow.makeInfoEnabled(true);
+                this.shipsWindow.makeDeleteEnabled(true);
+            }
+            else{
+                this.shipsWindow.makeInfoEnabled(false);
+                this.shipsWindow.makeDeleteEnabled(false);
+            }
+        });
+
+        this.shipsWindow.deleteButton(e -> {
+            int row = this.shipsWindow.getSelectedRow();
+            seaport.delete(row);
+            shipsTableModel.fireTableDataChanged();
+        });
+
+        this.shipsWindow.infoButton(e -> {
+            int row = this.shipsWindow.getSelectedRow();
+            Ship ship = seaport.get(row);
+            String info = ship.getAbout();
+            JOptionPane.showMessageDialog(this.shipsWindow, info);
+        });
     }
 }

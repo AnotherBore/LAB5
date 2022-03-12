@@ -30,6 +30,10 @@ public class Seaport {
             return ships;
         }
 
+        public Ship get(int index){
+            return ships.get(index);
+        }
+
         public String searchByName(String name) {
             String answer = "";
             for (Ship ship : ships) {
