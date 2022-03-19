@@ -9,12 +9,6 @@ public class MyTableModel extends AbstractTableModel {
     private int mode;
     private String[] headers;
 
-    // public MyTableModel(ArrayList<Object> ports) {
-    //     if (ports.getClass().getComponentType().isAssignableFrom(Sea))
-    //     this.ports = ports;
-    //     mode = 1;
-    // }
-
     public MyTableModel(ArrayList<Seaport> ports) {
         this.ports = ports;
         mode = 1;

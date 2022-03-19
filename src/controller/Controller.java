@@ -40,9 +40,14 @@ public class Controller {
 
         this.addPortWindow.addButton(e -> {
             String name = this.addPortWindow.getName();
-            ports.add(new Seaport(name));
-            portsTableModel.fireTableDataChanged();
-            this.addPortWindow.reset();
+            if(name.isEmpty()){
+                JOptionPane.showMessageDialog(this.addShipWindow, "Введите название", "Ошибка", 2);
+            }
+            else{
+                ports.add(new Seaport(name));
+                portsTableModel.fireTableDataChanged();
+                this.addPortWindow.reset();
+            }
         });
 
         //ACTIONLISTENERS FOR ADDSHIPWINDOW
@@ -62,7 +67,7 @@ public class Controller {
 
         this.addShipWindow.addButton(e -> {
             if(this.addShipWindow.getName().isEmpty()){
-                JOptionPane.showMessageDialog(this.addShipWindow, "Введите название");
+                JOptionPane.showMessageDialog(this.addShipWindow, "Введите название", "Ошибка", 2);
             }
             else{
                 String name = this.addShipWindow.getName();
@@ -134,7 +139,7 @@ public class Controller {
             int row = this.shipsWindow.getSelectedRow();
             Ship ship = seaport.get(row);
             String info = ship.getAbout();
-            JOptionPane.showMessageDialog(this.shipsWindow, info);
+            JOptionPane.showMessageDialog(this.shipsWindow, info, "Информация", 1);
         });
     }
 }
